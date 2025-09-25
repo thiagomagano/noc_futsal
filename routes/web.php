@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\AtletaController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -22,18 +24,15 @@ Route::get('/', function () {
 
 // Routes for Authenticated users
 Route::middleware('auth')->group(function () {
-    // The main app management page
-    Route::get('/dashboard', function () {
-        // You can access the authenticated user like this:
-        $user = Auth::user();
-        return view('dashboard', compact('user'));
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::resource('atletas', AtletaController::class);
+    Route::patch('atletas/{atleta}/toggle-status', [AtletaController::class, 'toggleStatus'])
+        ->name('atletas.toggle-status');
+    Route::patch('atletas/{id}/restore', [AtletaController::class, 'restore'])
+        ->name('atletas.restore')
+        ->withTrashed();
 
-    Route::get('/sobre', function () {
-        // You can access the authenticated user like this:
-        $user = Auth::user();
-        return view('sobre', compact('user'));
-    })->name('sobre');
+
     // Logout route
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 });
