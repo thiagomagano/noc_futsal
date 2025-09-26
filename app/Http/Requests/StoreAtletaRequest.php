@@ -9,7 +9,7 @@ class StoreAtletaRequest extends FormRequest
 {
     public function authorize(): bool
     {
-        return true; // Middleware auth já controla
+        return true;
     }
 
     public function rules(): array
