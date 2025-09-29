@@ -1,18 +1,18 @@
 @extends('layouts.app')
 
-@section('title', 'Dashboard - Futsal Manager')
+@section('title', 'Dashboard - N.O.C FUTSAL')
 
 @section('header')
     <div>
-        <h1 class="text-3xl font-bold text-gray-900">Dashboard</h1>
-        <p class="text-gray-600 mt-1">Visão geral do seu time de futsal</p>
+        <h1 class="text-3xl font-bold text-base-content">Dashboard</h1>
+        <p class="mt-1 text-base-content">Visão geral do N.O.C. Futsal</p>
     </div>
 @endsection
 
 @section('content')
     <!-- Stats Cards -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        <div class="stat bg-gradient-to-br from-primary to-primary-focus text-primary-content rounded-xl shadow-lg">
+        <div class="stat bg-primary text-primary-content rounded-xl shadow-lg">
             <div class="stat-figure text-primary-content opacity-60">
                 <svg class="inline-block w-8 h-8 stroke-current" fill="none" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -24,7 +24,7 @@
             <div class="stat-desc text-primary-content opacity-75">Cadastrados no sistema</div>
         </div>
 
-        <div class="stat bg-gradient-to-br from-success to-success-focus text-success-content rounded-xl shadow-lg">
+        <div class="stat bg-success text-success-content rounded-xl shadow-lg">
             <div class="stat-figure text-success-content opacity-60">
                 <svg class="inline-block w-8 h-8 stroke-current" fill="none" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -38,7 +38,7 @@
             </div>
         </div>
 
-        <div class="stat bg-gradient-to-br from-warning to-warning-focus text-warning-content rounded-xl shadow-lg">
+        <div class="stat bg-warning text-warning-content rounded-xl shadow-lg">
             <div class="stat-figure text-warning-content opacity-60">
                 <svg class="inline-block w-8 h-8 stroke-current" fill="none" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -50,7 +50,7 @@
             <div class="stat-desc text-warning-content opacity-75">Temporariamente fora</div>
         </div>
 
-        <div class="stat bg-gradient-to-br from-info to-info-focus text-info-content rounded-xl shadow-lg">
+        <div class="stat bg-info text-info-content rounded-xl shadow-lg">
             <div class="stat-figure text-info-content opacity-60">
                 <div class="text-2xl">⭐</div>
             </div>

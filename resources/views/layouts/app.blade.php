@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="light">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="dark">
 
 <head>
     <meta charset="utf-8">
@@ -19,14 +19,10 @@
 <body class="font-sans antialiased bg-base-100">
     <div class="min-h-screen">
         <!-- Navigation -->
-        <div class="navbar bg-primary text-primary-content shadow-lg">
-            <div class="navbar-start">
-                <a href="{{ route('dashboard') }}" class="btn btn-ghost text-xl font-bold">
-                    ⚽ Futsal Manager
-                </a>
-            </div>
+        <div class="navbar bg-base-400 shadow-lg">
+            
 
-            <div class="navbar-center hidden lg:flex">
+            <div class="navbar-start hidden lg:flex">
                 <ul class="menu menu-horizontal px-1">
                     <li>
                         <a href="{{ route('dashboard') }}"
@@ -41,6 +37,14 @@
                         </a>
                     </li>
                 </ul>
+            </div>
+
+            <div class="navbar-center">
+                <a href="{{ route('dashboard') }}" class="-mb-12 text-3xl font-bold">
+                    <img src="{{ asset('images/logo_noc.png') }}" alt="Logo do time, escudo vermelho e branco com uma estrela vermelha no centro" 
+                    class="w-24 h-24 object-contain hover:scale-105 transition-all duration-200">
+                     
+                </a>
             </div>
 
             <div class="navbar-end">
