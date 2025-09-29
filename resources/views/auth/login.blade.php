@@ -1,11 +1,20 @@
-<x-layout>
+@extends('layouts.app')
+
+@section('title', 'Dashboard - N.O.C FUTSAL')
+
+
+
+@section('content')
 
     <main class="min-h-screen flex items-center justify-center bg-base-200">
 
 
-        <div class="card w-full max-w-md shadow-2xl bg-base-100">
+        <div class="card w-full max-w-md shadow-2xl bg-base-100 flex">
             <div class="card-body">
-                <h2 class="text-4xl font-bold text-center mb-4">N.O.C</h2>
+                <div class="w-full place-self-center">
+                    <img src="{{ asset('images/logo_noc.png') }}" alt="Logo do time, escudo vermelho e branco com uma estrela vermelha no centro" 
+                    class="w-40 h-40 object-contain hover:scale-105 transition-all duration-200">
+                </div>
                 <p class="text-center text-sm text-gray-500 mb-6">Entre para continuar</p>
 
                 @if ($errors->any())
@@ -52,4 +61,4 @@
         </div>
     </main>
 
-</x-layout>
+@endsection

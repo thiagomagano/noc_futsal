@@ -11,7 +11,7 @@
 @section('header')
     <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
         <div>
-            <h1 class="text-3xl font-bold text-gray-900">{{ $atleta->nome_completo }}</h1>
+            <h1 class="text-3xl font-bold text-base-content">{{ $atleta->nome_completo }}</h1>
             <div class="flex items-center gap-4 mt-2">
                 <span class="badge badge-outline badge-lg">{{ $atleta->posicao_formatada }}</span>
                 <span class="badge {{ $atleta->isAtivo() ? 'badge-success' : 'badge-warning' }} badge-lg">

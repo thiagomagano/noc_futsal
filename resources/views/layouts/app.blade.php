@@ -21,7 +21,7 @@
         <!-- Navigation -->
         <div class="navbar bg-base-400 shadow-lg">
             
-
+    @auth
             <div class="navbar-start hidden lg:flex">
                 <ul class="menu menu-horizontal px-1">
                     <li>
@@ -38,6 +38,7 @@
                     </li>
                 </ul>
             </div>
+       
 
             <div class="navbar-center">
                 <a href="{{ route('dashboard') }}" class="-mb-12 text-3xl font-bold">
@@ -78,6 +79,7 @@
                 </a>
             </div>
         </div>
+    @endauth
 
         <!-- Main Content -->
         <main class="container mx-auto px-4 py-6 pb-20 lg:pb-6">
@@ -96,6 +98,7 @@
                     @yield('header')
                 </div>
             @endif
+          
 
             <!-- Flash Messages -->
             @if (session('success'))

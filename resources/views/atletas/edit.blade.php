@@ -12,7 +12,7 @@
 @section('header')
     <div class="flex items-center justify-between">
         <div>
-            <h1 class="text-3xl font-bold text-gray-900">Editar Atleta</h1>
+            <h1 class="text-3xl font-bold text-base-content">Editar Atleta</h1>
             <p class="text-gray-600 mt-1">{{ $atleta->nome_completo }}</p>
         </div>
     </div>
