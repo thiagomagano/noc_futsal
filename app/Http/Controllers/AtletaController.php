@@ -59,7 +59,7 @@ class AtletaController extends Controller
 
     public function create(): View
     {
-        $atleta = new Atleta();
+        $atleta = new Atleta;
         $posicoes = Atleta::POSICOES;
         $statusOptions = Atleta::STATUS_OPTIONS;
 

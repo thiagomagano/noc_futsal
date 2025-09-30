@@ -22,46 +22,46 @@ class UpdateAtletaRequest extends FormRequest
                 'string',
                 'min:2',
                 'max:100',
-                'regex:/^[\p{L}\s\-\'\.]+$/u'
+                'regex:/^[\p{L}\s\-\'\.]+$/u',
             ],
             'apelido' => [
                 'nullable',
                 'string',
                 'min:2',
                 'max:50',
-                'regex:/^[\p{L}\s\-\'\.]+$/u'
+                'regex:/^[\p{L}\s\-\'\.]+$/u',
             ],
             'posicao' => [
                 'required',
-                Rule::in(['goleiro', 'linha'])
+                Rule::in(['goleiro', 'linha']),
             ],
             'nivel_habilidade' => [
                 'required',
                 'integer',
                 'min:1',
-                'max:5'
+                'max:5',
             ],
             'telefone' => [
                 'required',
                 'string',
                 'regex:/^(\(?\d{2}\)?\s?)?\d{4,5}-?\d{4}$/',
-                Rule::unique('atletas', 'telefone')->ignore($atletaId)
+                Rule::unique('atletas', 'telefone')->ignore($atletaId),
             ],
             'status' => [
                 'required',
-                Rule::in(['ativo', 'inativo'])
+                Rule::in(['ativo', 'inativo']),
             ],
             'observacoes' => [
                 'nullable',
                 'string',
-                'max:1000'
-            ]
+                'max:1000',
+            ],
         ];
     }
 
     public function messages(): array
     {
-        return (new StoreAtletaRequest())->messages();
+        return (new StoreAtletaRequest)->messages();
     }
 
     protected function prepareForValidation(): void

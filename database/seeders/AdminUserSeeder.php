@@ -2,9 +2,10 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
-use App\Models\User; // Import the User model
+use App\Models\User;
+use Illuminate\Database\Seeder; // Import the User model
 use Illuminate\Support\Facades\Hash;
+
 // No need to import DB facade if using the model
 
 class AdminUserSeeder extends Seeder
