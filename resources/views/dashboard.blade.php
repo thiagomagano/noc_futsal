@@ -153,15 +153,25 @@
                     <h3 class="card-title text-lg mb-4">
                         ⚡ Ações Rápidas
                     </h3>
+                    <a href="{{ route('partidas.create') }}" class="btn btn-primary w-full">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3a4 4 0 118 0v4">
+                            </path>
+                            <path d="M4 7h16a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V9a2 2 0 012-2z"></path>
+                        </svg>
+                        Nova Partida
+                    </a>
 
                     <div class="space-y-3">
-                        <a href="{{ route('atletas.create') }}" class="btn btn-primary w-full">
+                        <a href="{{ route('atletas.create') }}" class="btn btn-secondary w-full">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4">
                                 </path>
                             </svg>
                             Novo Atleta
                         </a>
+
+
 
                         <a href="{{ route('atletas.index') }}" class="btn btn-outline w-full">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -171,14 +181,7 @@
                             Ver Todos os Atletas
                         </a>
 
-                        <button class="btn btn-outline w-full" disabled>
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M8 7V3a4 4 0 118 0v4"></path>
-                                <path d="M4 7h16a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V9a2 2 0 012-2z"></path>
-                            </svg>
-                            Nova Partida
-                        </button>
+
                     </div>
 
                     <div class="text-xs text-gray-500 mt-3">

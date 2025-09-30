@@ -1,0 +1,41 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration {
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('partidas', function (Blueprint $table) {
+            $table->id();
+            $table->dateTime('data_hora');
+            $table->string('local');
+            $table->enum('status', [
+                'aberta',
+                'confirmada',
+                'times_definidos',
+                'finalizada',
+                'cancelada'
+            ])->default('aberta');
+            $table->text('observacoes')->nullable();
+
+
+
+            $table->index(['status', 'data_hora']);
+            $table->index('data_hora');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('partidas');
+    }
+};

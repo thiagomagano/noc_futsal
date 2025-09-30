@@ -3,6 +3,7 @@
 use App\Http\Controllers\AtletaController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PartidaController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
@@ -28,6 +29,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('atletas/{id}/restore', [AtletaController::class, 'restore'])
         ->name('atletas.restore')
         ->withTrashed();
+
+    Route::get('/partidas', [PartidaController::class, 'index'])->name('partidas.index');
+    Route::get('/partidas/create', [PartidaController::class, 'create'])->name('partidas.create');
 
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 });
