@@ -10,8 +10,8 @@
 @section('header')
     <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
         <div>
-            <h1 class="text-3xl font-bold text-gray-900">Partidas</h1>
-            <p class="text-gray-600 mt-1">Organize e gerencie as partidas do time</p>
+            <h1 class="text-3xl font-bold text-gray-200">Partidas</h1>
+            <p class="text-gray-400 mt-1">Organize e gerencie as partidas do time</p>
         </div>
         <div class="flex gap-2">
             <a href="{{ route('partidas.create') }}" class="btn btn-primary">
@@ -157,7 +157,7 @@
                                     </span>
                                 </div>
 
-                                <div class="flex items-center gap-2 text-sm text-gray-600">
+                                <div class="flex items-center gap-2 text-sm text-gray-400">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -165,7 +165,7 @@
                                     <span>{{ $partida->hora_formatada }}</span>
                                 </div>
 
-                                <div class="flex items-center gap-2 text-sm text-gray-600 mt-1">
+                                <div class="flex items-center gap-2 text-sm text-gray-400 mt-1">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />

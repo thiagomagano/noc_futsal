@@ -81,7 +81,7 @@
                                 <div class="flex items-center justify-between">
                                     <div class="flex items-center gap-3">
                                         <span class="badge badge-outline">{{ $posicaoLabel }}</span>
-                                        <span class="text-sm text-gray-600">{{ $total }} atleta(s)</span>
+                                        <span class="text-sm text-gray-400">{{ $total }} atleta(s)</span>
                                     </div>
                                     <div class="flex items-center gap-2">
                                         <progress class="progress progress-primary w-20" value="{{ $porcentagem }}"

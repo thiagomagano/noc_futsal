@@ -11,8 +11,8 @@
 @section('header')
     <div class="flex items-center justify-between">
         <div>
-            <h1 class="text-3xl font-bold text-gray-900">Nova Partida</h1>
-            <p class="text-gray-600 mt-1">Organize uma nova partida para o time</p>
+            <h1 class="text-3xl font-bold text-gray-200">Nova Partida</h1>
+            <p class="text-gray-400 mt-1">Organize uma nova partida para o time</p>
         </div>
     </div>
 @endsection
@@ -51,7 +51,7 @@
                                 <label class="label">
                                     <span class="label-text">Horário <span class="text-error">*</span></span>
                                 </label>
-                                <input type="time" name="hora" value="{{ old('hora', '19:00') }}"
+                                <input type="time" name="hora" value="{{ old('hora', '18:40') }}"
                                     class="input input-bordered @error('data_hora') input-error @enderror" required>
                             </div>
                         </div>
@@ -61,9 +61,9 @@
                             <label class="label">
                                 <span class="label-text">Local <span class="text-error">*</span></span>
                             </label>
-                            <input type="text" name="local" value="{{ old('local') }}"
+                            <input type="text" name="local" value="{{ old('local', 'Gol Esportes') }}"
                                 class="input input-bordered @error('local') input-error @enderror"
-                                placeholder="Ex: Quadra do Clube Central" required>
+                                placeholder="Ex: Gol Esportes" required>
                             @error('local')
                                 <label class="label">
                                     <span class="label-text-alt text-error">{{ $message }}</span>

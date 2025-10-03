@@ -12,8 +12,8 @@
 @section('header')
     <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
         <div>
-            <h1 class="text-3xl font-bold text-gray-900">⚖️ Divisão de Times</h1>
-            <p class="text-gray-600 mt-1">{{ $partida->data_hora_formatada }} - {{ $partida->local }}</p>
+            <h1 class="text-3xl font-bold text-gray-200">⚖️ Divisão de Times</h1>
+            <p class="text-gray-400 mt-1">{{ $partida->data_hora_formatada }} - {{ $partida->local }}</p>
         </div>
     </div>
 @endsection

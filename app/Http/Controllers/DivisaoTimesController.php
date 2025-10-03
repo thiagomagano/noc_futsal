@@ -19,13 +19,13 @@ class DivisaoTimesController extends Controller
             $goleirosConfirmados = $partida->atletasConfirmados()
                 ->where('posicao', 'goleiro')
                 ->count();
-                
+
             if ($goleirosConfirmados < 2) {
                 $mensagem = 'É necessário pelo menos 2 goleiros confirmados para definir times.';
             } else {
                 $mensagem = 'Partida não tem quórum suficiente para definir times (10-14 jogadores confirmados).';
             }
-            
+
             return redirect()
                 ->route('partidas.show', $partida)
                 ->with('error', $mensagem);
@@ -47,13 +47,13 @@ class DivisaoTimesController extends Controller
             $goleirosConfirmados = $partida->atletasConfirmados()
                 ->where('posicao', 'goleiro')
                 ->count();
-                
+
             if ($goleirosConfirmados < 2) {
                 $mensagem = 'É necessário pelo menos 2 goleiros confirmados para definir times.';
             } else {
                 $mensagem = 'Partida não tem quórum suficiente para definir times (10-14 jogadores confirmados).';
             }
-            
+
             return redirect()
                 ->route('partidas.show', $partida)
                 ->with('error', $mensagem);
@@ -157,34 +157,34 @@ class DivisaoTimesController extends Controller
             ->get();
 
         $totalJogadores = $atletasConfirmados->count();
-        
+
         // Separar goleiros dos demais jogadores
         $goleiros = $atletasConfirmados->where('posicao', 'goleiro')->values();
         $jogadoresLinha = $atletasConfirmados->where('posicao', 'linha')->values();
-        
+
         // Validar se há goleiros suficientes
         if ($goleiros->count() < 2) {
             throw new \Exception('É necessário pelo menos 2 goleiros confirmados para definir times.');
         }
-        
+
         // Calcular distribuição ideal de jogadores
         $distribuicao = $this->calcularDistribuicaoJogadores($totalJogadores);
-        
+
         // Primeira fase: distribuir goleiros
         $timePreto = collect();
         $timeBranco = collect();
-        
+
         // Distribuir os 2 melhores goleiros (um para cada time)
         $timePreto->push($goleiros->shift()); // Melhor goleiro para time preto
         $timeBranco->push($goleiros->shift()); // Segundo melhor goleiro para time branco
-        
+
         // Adicionar goleiros restantes à lista de jogadores de linha
         $jogadoresLinha = $jogadoresLinha->merge($goleiros);
-        
+
         // Segunda fase: distribuir jogadores de linha
         $turnoPreto = true;
         $jogadoresDistribuidos = 2; // Já distribuímos 2 goleiros
-        
+
         while ($jogadoresDistribuidos < $totalJogadores) {
             if ($turnoPreto && $timePreto->count() < $distribuicao['preto']) {
                 $timePreto->push($jogadoresLinha->shift());
@@ -202,10 +202,10 @@ class DivisaoTimesController extends Controller
             }
             $jogadoresDistribuidos++;
         }
-        
+
         // Terceira fase: otimizar balanceamento de habilidade (mantendo goleiros)
         $melhorDivisao = $this->otimizarBalanceamentoComGoleiros($timePreto, $timeBranco, $distribuicao);
-        
+
         // Calcular estatísticas finais
         $somaPreto = $melhorDivisao['preto']->sum('nivel_habilidade');
         $somaBranco = $melhorDivisao['branco']->sum('nivel_habilidade');
@@ -258,14 +258,14 @@ class DivisaoTimesController extends Controller
         $melhorPreto = $timePreto;
         $melhorBranco = $timeBranco;
         $melhorDiferenca = abs($timePreto->sum('nivel_habilidade') - $timeBranco->sum('nivel_habilidade'));
-        
+
         // Tentar trocas para melhorar o balanceamento
         $tentativas = 0;
         $maxTentativas = 50; // Limite para evitar loop infinito
-        
+
         while ($tentativas < $maxTentativas) {
             $melhorou = false;
-            
+
             // Tentar trocar cada jogador do time preto com cada do branco
             foreach ($timePreto as $indexPreto => $jogadorPreto) {
                 foreach ($timeBranco as $indexBranco => $jogadorBranco) {
@@ -273,13 +273,13 @@ class DivisaoTimesController extends Controller
                     if (!$this->validarTrocaGoleiros($timePreto, $timeBranco, $indexPreto, $indexBranco)) {
                         continue;
                     }
-                    
+
                     // Simular troca
                     $novoPreto = $timePreto->except([$indexPreto])->push($jogadorBranco);
                     $novoBranco = $timeBranco->except([$indexBranco])->push($jogadorPreto);
-                    
+
                     $novaDiferenca = abs($novoPreto->sum('nivel_habilidade') - $novoBranco->sum('nivel_habilidade'));
-                    
+
                     // Se melhorou o balanceamento, aceitar a troca
                     if ($novaDiferenca < $melhorDiferenca) {
                         $melhorPreto = $novoPreto;
@@ -292,15 +292,15 @@ class DivisaoTimesController extends Controller
                     }
                 }
             }
-            
+
             // Se não melhorou, parar
             if (!$melhorou) {
                 break;
             }
-            
+
             $tentativas++;
         }
-        
+
         return [
             'preto' => $melhorPreto,
             'branco' => $melhorBranco
@@ -314,19 +314,19 @@ class DivisaoTimesController extends Controller
     {
         $jogadorPreto = $timePreto[$indexPreto];
         $jogadorBranco = $timeBranco[$indexBranco];
-        
+
         // Contar goleiros antes da troca
         $goleirosPretoAntes = $timePreto->where('posicao', 'goleiro')->count();
         $goleirosBrancoAntes = $timeBranco->where('posicao', 'goleiro')->count();
-        
+
         // Simular a troca
         $novoPreto = $timePreto->except([$indexPreto])->push($jogadorBranco);
         $novoBranco = $timeBranco->except([$indexBranco])->push($jogadorPreto);
-        
+
         // Contar goleiros após a troca
         $goleirosPretoDepois = $novoPreto->where('posicao', 'goleiro')->count();
         $goleirosBrancoDepois = $novoBranco->where('posicao', 'goleiro')->count();
-        
+
         // Validar se cada time mantém pelo menos 1 goleiro
         return $goleirosPretoDepois >= 1 && $goleirosBrancoDepois >= 1;
     }
@@ -339,7 +339,7 @@ class DivisaoTimesController extends Controller
         $mensagem = "🏆 PARTIDA CONFIRMADA 🏆\n";
         $mensagem .= "━━━━━━━━━━━━━━━━━━━━\n\n";
         $mensagem .= "📅 Data: {$partida->data_formatada}\n";
-        $mensagem .= "🕐 Horário: {$partida->hora_formatada}\n";
+        $mensagem .= "🕐 Horário: 18:40\n";
         $mensagem .= "📍 Local: {$partida->local}\n\n";
         $mensagem .= "━━━━━━━━━━━━━━━━━━━━\n\n";
 
@@ -350,7 +350,7 @@ class DivisaoTimesController extends Controller
         // Separar goleiros dos demais jogadores
         $goleirosPreto = [];
         $jogadoresPreto = [];
-        
+
         foreach ($timePreto as $atleta) {
             if ($atleta->posicao === 'goleiro') {
                 $goleirosPreto[] = $atleta;
@@ -382,7 +382,7 @@ class DivisaoTimesController extends Controller
         // Separar goleiros dos demais jogadores
         $goleirosBranco = [];
         $jogadoresBranco = [];
-        
+
         foreach ($timeBranco as $atleta) {
             if ($atleta->posicao === 'goleiro') {
                 $goleirosBranco[] = $atleta;
@@ -410,7 +410,7 @@ class DivisaoTimesController extends Controller
             $mensagem .= "📝 Obs: {$partida->observacoes}\n";
         }
 
-        $mensagem .= "\n⚽ Bom jogo a todos! ⚽";
+        $mensagem .= "\n⚽ Bom jogo a todes! ⚽";
 
         return $mensagem;
     }

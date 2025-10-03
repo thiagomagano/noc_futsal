@@ -11,7 +11,7 @@
 @section('header')
     <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
         <div>
-            <h1 class="text-3xl font-bold text-gray-900">{{ $partida->data_hora_formatada }}</h1>
+            <h1 class="text-3xl font-bold text-gray-200">{{ $partida->data_hora_formatada }}</h1>
             <div class="flex items-center gap-4 mt-2">
                 <span
                     class="badge 
@@ -23,7 +23,7 @@
                 ">
                     {{ $partida->status_formatado }}
                 </span>
-                <span class="text-gray-600">📍 {{ $partida->local }}</span>
+                <span class="text-gray-400">📍 {{ $partida->local }}</span>
             </div>
         </div>
         <div class="flex gap-2">

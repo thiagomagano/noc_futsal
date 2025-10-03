@@ -42,7 +42,7 @@
     @endfor
 
     @if (!$readonly)
-        <span class="ml-2 text-sm text-gray-600"
+        <span class="ml-2 text-sm text-gray-400"
             x-text="
             rating === 1 ? 'Iniciante' :
             rating === 2 ? 'Básico' :
@@ -51,7 +51,7 @@
             rating === 5 ? 'Expert' : 'Selecione'
         "></span>
     @else
-        <span class="ml-2 text-sm text-gray-600">
+        <span class="ml-2 text-sm text-gray-400">
             {{ \App\Models\Atleta::NIVEIS_HABILIDADE[$value] ?? 'N/A' }}
         </span>
     @endif

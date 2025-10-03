@@ -12,8 +12,8 @@
 @section('header')
     <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
         <div>
-            <h1 class="text-3xl font-bold text-gray-900">💬 Mensagem para WhatsApp</h1>
-            <p class="text-gray-600 mt-1">Copie e cole a mensagem no grupo do time</p>
+            <h1 class="text-3xl font-bold text-gray-200">💬 Mensagem para WhatsApp</h1>
+            <p class="text-gray-400 mt-1">Copie e cole a mensagem no grupo do time</p>
         </div>
     </div>
 @endsection
@@ -115,7 +115,7 @@
                                     <span class="badge badge-lg">{{ $balanceamento['branco']['total_jogadores'] }}
                                         jogadores</span>
                                 </div>
-                                <div class="text-sm text-gray-600">
+                                <div class="text-sm text-gray-400">
                                     <p>Habilidade Total: {{ $balanceamento['branco']['soma_habilidade'] }}</p>
                                     <p>Média: {{ $balanceamento['branco']['media_habilidade'] }} ⭐</p>
                                 </div>

@@ -11,7 +11,7 @@
     <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
         <div>
             <h1 class="text-3xl font-bold text-base-content">Atletas</h1>
-            <p class="text-gray-600 mt-1">Gerencie os jogadores do seu time</p>
+            <p class="text-gray-400 mt-1">Gerencie os jogadores do seu time</p>
         </div>
         <div class="flex gap-2">
             <a href="{{ route('atletas.create') }}" class="btn btn-primary">

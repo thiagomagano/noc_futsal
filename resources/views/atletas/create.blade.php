@@ -12,7 +12,7 @@
     <div class="flex items-center justify-between">
         <div>
             <h1 class="text-3xl font-bold text-base-content">Novo Atleta</h1>
-            <p class="text-gray-600 mt-1">Cadastre um novo jogador no sistema</p>
+            <p class="text-gray-400 mt-1">Cadastre um novo jogador no sistema</p>
         </div>
     </div>
 @endsection
