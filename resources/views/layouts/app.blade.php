@@ -23,13 +23,17 @@
 
             @auth
                 <div class="navbar-start hidden lg:flex">
+                    <a href="{{ route('dashboard') }}" class="text-3xl font-bold">
+                        <img src="{{ asset('images/logo_noc.png') }}"
+                            alt="Logo do time, escudo vermelho e branco com uma estrela vermelha no centro"
+                            class="w-16 h-16 object-contain hover:scale-105 transition-all duration-200">
+
+                    </a>
+                </div>
+
+                <div class="navbar-center hidden lg:flex">
                     <ul class="menu menu-horizontal px-1">
-                        <li>
-                            <a href="{{ route('dashboard') }}"
-                                class="{{ request()->routeIs('dashboard') ? 'active' : '' }}">
-                                Dashboard
-                            </a>
-                        </li>
+
                         <li>
                             <a href="{{ route('atletas.index') }}"
                                 class="{{ request()->routeIs('atletas.*') ? 'active' : '' }}">
@@ -45,44 +49,24 @@
                     </ul>
                 </div>
 
-
-                <div class="navbar-center">
-                    <a href="{{ route('dashboard') }}" class="-mb-12 text-3xl font-bold">
-                        <img src="{{ asset('images/logo_noc.png') }}"
-                            alt="Logo do time, escudo vermelho e branco com uma estrela vermelha no centro"
-                            class="w-24 h-24 object-contain hover:scale-105 transition-all duration-200">
-
-                    </a>
-                </div>
-
                 <div class="navbar-end">
-                    <div class="dropdown dropdown-end">
-                        <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
-                            <div class="w-10 rounded-full bg-base-100 text-primary flex items-center justify-center">
-                                👤
-                            </div>
-                        </div>
-                        <ul tabindex="0"
-                            class="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 text-base-content rounded-box w-52">
-                            <li>
-                                <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-                                    <button type="submit">Logout</button>
-                                </form>
-                            </li>
-                        </ul>
-                    </div>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="btn btn-outline text-xs">Sair</button>
+
+                    </form>
                 </div>
             </div>
 
             <!-- Mobile Menu -->
             <div class="lg:hidden">
                 <div class="btm-nav btm-nav-sm bg-primary text-primary-content">
-                    <a href="{{ route('dashboard') }}" class="{{ request()->routeIs('dashboard') ? 'active' : '' }}">
-                        <span class="btm-nav-label">Dashboard</span>
-                    </a>
                     <a href="{{ route('atletas.index') }}" class="{{ request()->routeIs('atletas.*') ? 'active' : '' }}">
                         <span class="btm-nav-label">Atletas</span>
+                    </a>
+                    <a href="{{ route('partidas.index') }}"
+                        class="{{ request()->routeIs('partidas.*') ? 'active' : '' }}">
+                        <span class="btm-nav-label">Partidas</span>
                     </a>
                 </div>
             </div>

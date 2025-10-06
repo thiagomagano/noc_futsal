@@ -11,7 +11,7 @@
     name: "dark";
     default: true;
     --color-primary: rgba(220, 36, 21);
-      --color-primary-content: rgba(54, 7, 7);
+    --color-primary-content: rgba(54, 7, 7);
     --color-secondary: rgba(208, 161, 91);
     --color-secondary-content: rgba(255, 255, 255);
-  }
+}
