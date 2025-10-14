@@ -63,7 +63,7 @@ class PartidaController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $validated = $request->validate([
-            'data_hora' => 'required|date|after:now',
+            'data_hora' => 'required|date|after_or_equal:today',
             'local' => 'required|string|max:255',
             'observacoes' => 'nullable|string|max:1000',
             'atletas' => 'nullable|array',
