@@ -29,6 +29,12 @@ class StoreAtletaRequest extends FormRequest
                 'max:50',
                 'regex:/^[\p{L}\s\-\'\.]+$/u',
             ],
+            'numero' => [
+                'nullable',
+                'integer',
+                'min:1',
+                'max:99',
+            ],
             'posicao' => [
                 'required',
                 Rule::in(['goleiro', 'linha']),
@@ -40,7 +46,7 @@ class StoreAtletaRequest extends FormRequest
                 'max:5',
             ],
             'telefone' => [
-                'required',
+                'nullable',
                 'string',
                 'regex:/^(\(?\d{2}\)?\s?)?\d{4,5}-?\d{4}$/',
                 'unique:atletas,telefone',
@@ -69,6 +75,9 @@ class StoreAtletaRequest extends FormRequest
             'apelido.max' => 'O apelido não pode ter mais de 50 caracteres.',
             'apelido.regex' => 'O apelido contém caracteres inválidos.',
 
+            'numero.min' => 'O número da camiseta deve ser de 1 a 99.',
+            'numero.max' => 'O número da camiseta deve ser de 1 a 99.',
+
             'posicao.required' => 'A posição é obrigatória.',
             'posicao.in' => 'Posição inválida selecionada.',
 
@@ -77,7 +86,6 @@ class StoreAtletaRequest extends FormRequest
             'nivel_habilidade.min' => 'O nível mínimo é 1.',
             'nivel_habilidade.max' => 'O nível máximo é 5.',
 
-            'telefone.required' => 'O telefone é obrigatório.',
             'telefone.regex' => 'Formato de telefone inválido. Use (XX) XXXXX-XXXX ou similar.',
             'telefone.unique' => 'Este telefone já está cadastrado.',
 

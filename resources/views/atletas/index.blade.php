@@ -160,6 +160,15 @@
                         <thead class="bg-base-200">
                             <tr>
                                 <th>
+                                    <a href="{{ request()->fullUrlWithQuery(['sort' => 'numero', 'direction' => request('direction') === 'asc' ? 'desc' : 'asc']) }}"
+                                        class="flex items-center gap-1 hover:text-primary">
+                                        Numero
+                                        @if (request('sort') === 'nome')
+                                            <span class="text-xs">{{ request('direction') === 'asc' ? '▲' : '▼' }}</span>
+                                        @endif
+                                    </a>
+                                </th>
+                                <th>
                                     <a href="{{ request()->fullUrlWithQuery(['sort' => 'nome', 'direction' => request('direction') === 'asc' ? 'desc' : 'asc']) }}"
                                         class="flex items-center gap-1 hover:text-primary">
                                         Nome
@@ -168,15 +177,7 @@
                                         @endif
                                     </a>
                                 </th>
-                                <th>
-                                    <a href="{{ request()->fullUrlWithQuery(['sort' => 'posicao', 'direction' => request('direction') === 'asc' ? 'desc' : 'asc']) }}"
-                                        class="flex items-center gap-1 hover:text-primary">
-                                        Posição
-                                        @if (request('sort') === 'posicao')
-                                            <span class="text-xs">{{ request('direction') === 'asc' ? '▲' : '▼' }}</span>
-                                        @endif
-                                    </a>
-                                </th>
+
                                 <th>
                                     <a href="{{ request()->fullUrlWithQuery(['sort' => 'nivel_habilidade', 'direction' => request('direction') === 'asc' ? 'desc' : 'asc']) }}"
                                         class="flex items-center gap-1 hover:text-primary">
@@ -196,6 +197,15 @@
                                         @endif
                                     </a>
                                 </th>
+                                <th>
+                                    <a href="{{ request()->fullUrlWithQuery(['sort' => 'posicao', 'direction' => request('direction') === 'asc' ? 'desc' : 'asc']) }}"
+                                        class="flex items-center gap-1 hover:text-primary">
+                                        Posição
+                                        @if (request('sort') === 'posicao')
+                                            <span class="text-xs">{{ request('direction') === 'asc' ? '▲' : '▼' }}</span>
+                                        @endif
+                                    </a>
+                                </th>
                                 <th class="text-right">Ações</th>
                             </tr>
                         </thead>
@@ -204,15 +214,19 @@
                                 <tr class="hover">
                                     <td>
                                         <div>
+                                            <div class="font-semibold">{{ $atleta->numero }}</div>
+
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
                                             <div class="font-semibold">{{ $atleta->nome }}</div>
                                             @if ($atleta->apelido)
                                                 <div class="text-sm text-gray-500">"{{ $atleta->apelido }}"</div>
                                             @endif
                                         </div>
                                     </td>
-                                    <td>
-                                        <span class="badge badge-outline">{{ $atleta->posicao_formatada }}</span>
-                                    </td>
+
                                     <td>
                                         <x-star-rating :value="$atleta->nivel_habilidade" readonly size="sm" />
 
@@ -221,6 +235,9 @@
                                         <a href="tel:{{ $atleta->telefone }}" class="link link-primary text-sm">
                                             {{ $atleta->telefone }}
                                         </a>
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-outline">{{ $atleta->posicao_formatada }}</span>
                                     </td>
                                     <td>
                                         <span class="badge {{ $atleta->isAtivo() ? 'badge-success' : 'badge-warning' }}">

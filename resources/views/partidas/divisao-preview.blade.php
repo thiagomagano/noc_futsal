@@ -13,7 +13,7 @@
     <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
         <div>
             <h1 class="text-3xl font-bold text-gray-200">⚖️ Divisão de Times</h1>
-            <p class="text-gray-400 mt-1">{{ $partida->data_hora_formatada }} - {{ $partida->local }}</p>
+            <p class="text-gray-400 mt-1">{{ $partida->data_formatada }} - {{ $partida->local }}</p>
         </div>
     </div>
 @endsection
@@ -105,9 +105,11 @@
                         @foreach ($divisao['time_preto'] as $index => $atleta)
                             <div
                                 class="flex items-center gap-4 p-3 bg-neutral-focus rounded-lg hover:bg-opacity-80 transition-colors">
-                                <div class="avatar placeholder">
+
+                                <div class="avatar avatar-placeholder">
                                     <div class="bg-neutral-content text-neutral rounded-full w-12">
-                                        <span class="text-xl font-bold">{{ $index + 1 }}</span>
+                                        <span
+                                            class="text-xl font-bold">{{ $atleta->numero ? $atleta->numero : 'x' }}</span>
                                     </div>
                                 </div>
 
@@ -166,9 +168,10 @@
                         @foreach ($divisao['time_branco'] as $index => $atleta)
                             <div
                                 class="flex items-center gap-4 p-3 bg-base-200 rounded-lg hover:bg-base-300 transition-colors">
-                                <div class="avatar placeholder">
+                                <div class="avatar avatar-placeholder">
                                     <div class="bg-primary text-primary-content rounded-full w-12">
-                                        <span class="text-xl font-bold">{{ $index + 1 }}</span>
+                                        <span
+                                            class="text-xl font-bold">{{ $atleta->numero ? $atleta->numero : rand(20, 40) }}</span>
                                     </div>
                                 </div>
 

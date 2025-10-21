@@ -12,8 +12,9 @@ return new class extends Migration {
     {
         Schema::create('partidas', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('data_hora');
-            $table->string('local');
+            $table->date('data');
+            $table->time('hora')->default("18:40");
+            $table->string('local')->default('Gol Esportes');
             $table->enum('status', [
                 'aberta',
                 'confirmada',
@@ -25,8 +26,8 @@ return new class extends Migration {
 
 
 
-            $table->index(['status', 'data_hora']);
-            $table->index('data_hora');
+            $table->index(['status', 'data']);
+            $table->index('data');
             $table->timestamps();
         });
     }

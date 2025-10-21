@@ -31,6 +31,12 @@ class UpdateAtletaRequest extends FormRequest
                 'max:50',
                 'regex:/^[\p{L}\s\-\'\.]+$/u',
             ],
+            'numero' => [
+                'nullable',
+                'integer',
+                'min:1',
+                'max:99',
+            ],
             'posicao' => [
                 'required',
                 Rule::in(['goleiro', 'linha']),
@@ -42,7 +48,7 @@ class UpdateAtletaRequest extends FormRequest
                 'max:5',
             ],
             'telefone' => [
-                'required',
+                'nullable',
                 'string',
                 'regex:/^(\(?\d{2}\)?\s?)?\d{4,5}-?\d{4}$/',
                 Rule::unique('atletas', 'telefone')->ignore($atletaId),

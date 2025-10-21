@@ -38,11 +38,11 @@ class Atleta extends Model
     ];
 
     const NIVEIS_HABILIDADE = [
-        1 => 'Nunca Jogou',
-        2 => 'Bagre',
-        3 => 'Algo',
+        1 => 'Bagre',
+        2 => 'Tenta',
+        3 => 'Mediano',
         4 => 'Bom de Bola',
-        5 => 'Gênio',
+        5 => 'Crack',
     ];
 
     // Accessors
@@ -86,7 +86,6 @@ class Atleta extends Model
     {
         return $query->where('nivel_habilidade', $nivel);
     }
-
     public function scopeBuscar(Builder $query, string $termo): Builder
     {
         return $query->where(function ($q) use ($termo) {

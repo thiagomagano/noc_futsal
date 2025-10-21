@@ -13,14 +13,16 @@ class Partida extends Model
     use HasFactory;
 
     protected $fillable = [
-        'data_hora',
+        'data',
+        'hora',
         'local',
         'status',
         'observacoes',
     ];
 
     protected $casts = [
-        'data_hora' => 'datetime',
+        'data' => 'datetime',
+        'hora' => 'datetime:H:i:',
     ];
 
     // Constantes para status
@@ -95,17 +97,12 @@ class Partida extends Model
 
     public function getDataFormatadaAttribute(): string
     {
-        return $this->data_hora->format('d/m/Y');
+        return $this->data->format('d/m/Y');
     }
 
     public function getHoraFormatadaAttribute(): string
     {
-        return $this->data_hora->format('H:i');
-    }
-
-    public function getDataHoraFormatadaAttribute(): string
-    {
-        return $this->data_hora->format('d/m/Y \à\s H:i');
+        return $this->hora->format('H:i');
     }
 
     /**
@@ -138,16 +135,16 @@ class Partida extends Model
 
     public function scopeProximas(Builder $query): Builder
     {
-        return $query->where('data_hora', '>=', now())
+        return $query->where('data', '>=', now())
             ->whereNotIn('status', [self::STATUS_FINALIZADA, self::STATUS_CANCELADA])
-            ->orderBy('data_hora', 'asc');
+            ->orderBy('data', 'asc');
     }
 
     public function scopePassadas(Builder $query): Builder
     {
-        return $query->where('data_hora', '<', now())
+        return $query->where('data', '<', now())
             ->orWhereIn('status', [self::STATUS_FINALIZADA, self::STATUS_CANCELADA])
-            ->orderBy('data_hora', 'desc');
+            ->orderBy('data', 'desc');
     }
 
     /**
@@ -197,7 +194,7 @@ class Partida extends Model
         $goleirosConfirmados = $this->atletasConfirmados()
             ->where('posicao', 'goleiro')
             ->count();
-            
+
         return $this->temQuorum() &&
             $goleirosConfirmados >= 2 &&
             ($this->isAberta() || $this->isConfirmada());

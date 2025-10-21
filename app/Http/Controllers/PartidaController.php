@@ -31,7 +31,7 @@ class PartidaController extends Controller
         }
 
         // Ordenação padrão
-        $query->orderBy('data_hora', 'desc');
+        $query->orderBy('data', 'desc');
 
         $partidas = $query->paginate(15)->withQueryString();
 
@@ -63,15 +63,16 @@ class PartidaController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $validated = $request->validate([
-            'data_hora' => 'required|date|after_or_equal:today',
+            'data' => 'required|date|after_or_equal:today',
+            'hora' => 'required|date_format:H:i',
             'local' => 'required|string|max:255',
             'observacoes' => 'nullable|string|max:1000',
             'atletas' => 'nullable|array',
             'atletas.*' => 'exists:atletas,id',
         ], [
-            'data_hora.required' => 'A data e hora são obrigatórias.',
-            'data_hora.date' => 'Data e hora inválidas.',
-            'data_hora.after' => 'A data da partida deve ser futura.',
+            'data.required' => 'A data é são obrigatórias.',
+            'data.date' => 'Data inválida.',
+            'data.after' => 'A data da partida deve ser futura.',
             'local.required' => 'O local é obrigatório.',
             'local.max' => 'O local não pode ter mais de 255 caracteres.',
             'observacoes.max' => 'As observações não podem ter mais de 1000 caracteres.',
@@ -81,7 +82,8 @@ class PartidaController extends Controller
 
         try {
             $partida = Partida::create([
-                'data_hora' => $validated['data_hora'],
+                'data' => $validated['data'],
+                'hora' => $validated['hora'],
                 'local' => $validated['local'],
                 'observacoes' => $validated['observacoes'] ?? null,
                 'status' => Partida::STATUS_ABERTA,
@@ -166,13 +168,13 @@ class PartidaController extends Controller
         }
 
         $validated = $request->validate([
-            'data_hora' => 'required|date',
+            'data' => 'required|date',
             'local' => 'required|string|max:255',
             'observacoes' => 'nullable|string|max:1000',
             'status' => 'required|in:' . implode(',', array_keys(Partida::STATUS_OPTIONS)),
         ], [
-            'data_hora.required' => 'A data e hora são obrigatórias.',
-            'data_hora.date' => 'Data e hora inválidas.',
+            'data.required' => 'A data e hora são obrigatórias.',
+            'data.date' => 'Data inválida.',
             'local.required' => 'O local é obrigatório.',
             'local.max' => 'O local não pode ter mais de 255 caracteres.',
             'observacoes.max' => 'As observações não podem ter mais de 1000 caracteres.',

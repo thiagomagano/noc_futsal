@@ -44,11 +44,11 @@
     @if (!$readonly)
         <span class="ml-2 text-sm text-gray-400"
             x-text="
-            rating === 1 ? 'Iniciante' :
-            rating === 2 ? 'Básico' :
-            rating === 3 ? 'Intermediário' :
-            rating === 4 ? 'Avançado' :
-            rating === 5 ? 'Expert' : 'Selecione'
+            rating === 1 ? 'Bagre' :
+            rating === 2 ? 'Tenta' :
+            rating === 3 ? 'Mediano' :
+            rating === 4 ? 'Bom de Bola' :
+            rating === 5 ? 'Crack' : 'Selecione'
         "></span>
     @else
         <span class="ml-2 text-sm text-gray-400">

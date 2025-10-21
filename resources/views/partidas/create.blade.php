@@ -36,10 +36,11 @@
                                 <label class="label">
                                     <span class="label-text">Data <span class="text-error">*</span></span>
                                 </label>
-                                <input type="date" name="data_hora" value="{{ old('data_hora') }}"
-                                    class="input input-bordered @error('data_hora') input-error @enderror" required
+                                <input type="date" name="data"
+                                    value="{{ old('data', now()->next(Carbon\Carbon::TUESDAY)->toDateString()) }}"
+                                    class="input input-bordered @error('data') input-error @enderror" required
                                     min="{{ date('Y-m-d') }}">
-                                @error('data_hora')
+                                @error('data')
                                     <label class="label">
                                         <span class="label-text-alt text-error">{{ $message }}</span>
                                     </label>
@@ -52,7 +53,7 @@
                                     <span class="label-text">Horário <span class="text-error">*</span></span>
                                 </label>
                                 <input type="time" name="hora" value="{{ old('hora', '18:40') }}"
-                                    class="input input-bordered @error('data_hora') input-error @enderror" required>
+                                    class="input input-bordered @error('data') input-error @enderror" required>
                             </div>
                         </div>
 
@@ -181,17 +182,6 @@
 
 @push('scripts')
     <script>
-        // Combinar data e hora no submit
-        document.querySelector('form').addEventListener('submit', function(e) {
-            const dataInput = document.querySelector('input[name="data_hora"]');
-            const horaInput = document.querySelector('input[name="hora"]');
-
-            if (dataInput.value && horaInput.value) {
-                dataInput.value = dataInput.value + ' ' + horaInput.value + ':00';
-            }
-        });
-
-        // Selecionar todos os atletas
         function selecionarTodos() {
             const checkboxes = document.querySelectorAll('input[name="atletas[]"]');
             const todosChecados = Array.from(checkboxes).every(cb => cb.checked);

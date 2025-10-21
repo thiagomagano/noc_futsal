@@ -51,6 +51,8 @@ Route::middleware('auth')->group(function () {
         ->name('partidas.divisao.redistribuir');
     Route::get('partidas/{partida}/mensagem-whatsapp', [DivisaoTimesController::class, 'gerarMensagem'])
         ->name('partidas.mensagem-whatsapp');
+    Route::get('partidas/{partida}/story-instagram', [DivisaoTimesController::class, 'gerarStory'])
+        ->name('partidas.story-instagram');
 
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 });

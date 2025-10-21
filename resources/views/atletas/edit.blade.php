@@ -65,19 +65,37 @@
                             </div>
                         </div>
 
-                        <!-- Telefone -->
-                        <div class="form-control">
-                            <label class="label">
-                                <span class="label-text">Telefone/WhatsApp <span class="text-error">*</span></span>
-                            </label>
-                            <input type="tel" name="telefone" value="{{ old('telefone', $atleta->telefone) }}"
-                                class="input input-bordered @error('telefone') input-error @enderror"
-                                placeholder="(11) 99999-9999" required x-model="form.telefone" x-on:input="formatTelefone">
-                            @error('telefone')
+                        <!-- Numero da camisa -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+                            <div class="form-control">
                                 <label class="label">
-                                    <span class="label-text-alt text-error">{{ $message }}</span>
+                                    <span class="label-text">Numero da Camisa</span>
                                 </label>
-                            @enderror
+                                <input type="number" name="numero" value="{{ old('numero', $atleta->numero) }}"
+                                    class="input input-bordered @error('numero') input-error @enderror" placeholder="10"
+                                    x-model="form.numero" x-on:input="formatNumero">
+                                @error('numero')
+                                    <label class="label">
+                                        <span class="label-text-alt text-error">{{ $message }}</span>
+                                    </label>
+                                @enderror
+                            </div>
+
+                            <!-- Telefone -->
+                            <div class="form-control">
+                                <label class="label">
+                                    <span class="label-text">Telefone/WhatsApp</span>
+                                </label>
+                                <input type="tel" name="telefone" value="{{ old('telefone', $atleta->telefone) }}"
+                                    class="input input-bordered @error('telefone') input-error @enderror"
+                                    placeholder="(11) 99999-9999" x-model="form.telefone" x-on:input="formatTelefone">
+                                @error('telefone')
+                                    <label class="label">
+                                        <span class="label-text-alt text-error">{{ $message }}</span>
+                                    </label>
+                                @enderror
+                            </div>
                         </div>
                     </div>
 

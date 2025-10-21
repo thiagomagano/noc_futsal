@@ -183,13 +183,21 @@
             <!-- Time Preto -->
             <div class="card bg-neutral text-neutral-content shadow-xl">
                 <div class="card-body">
-                    <h3 class="card-title mb-4">⚫ Time Preto</h3>
+                    <h3 class="card-title mb-4">
+                        <img class="size-[40px] object-contain" src="/images/logo_noc_preto.png" alt="Logo noc">
+                        <span>Time Preto </span>
+                    </h3>
                     <ul class="space-y-2">
                         @foreach ($timePreto as $index => $atleta)
-                            <li class="flex items-center gap-2 p-2 bg-neutral-focus rounded">
-                                <span class="font-bold">{{ $index + 1 }}.</span>
+                            <li class="flex items-center gap-2 p-2 bg-base-900 rounded">
+                                <div class="avatar avatar-placeholder">
+                                    <div class="bg-base-content text-base-300 rounded-full w-10">
+                                        <span
+                                            class="text-lg font-bold">{{ mb_strtoupper(mb_substr($atleta->apelido ?: $atleta->nome, 0, 1)) }}</span>
+                                    </div>
+                                </div>
                                 <span class="flex-1">{{ $atleta->apelido ?: $atleta->nome }}</span>
-                                <span class="text-sm">{{ str_repeat('⭐', $atleta->nivel_habilidade) }}</span>
+                                <span class="text-sm text-gray-500">#{{ $atleta->numero }}</span>
                             </li>
                         @endforeach
                     </ul>
@@ -197,15 +205,23 @@
             </div>
 
             <!-- Time Branco -->
-            <div class="card bg-base-100 border-2 shadow-xl">
-                <div class="card-body">
-                    <h3 class="card-title mb-4">⚪ Time Branco</h3>
+            <div class="card bg-white text-base-100 border-2 shadow-xl">
+                <div class="card-body text-base-900">
+                    <h3 class="card-title mb-4">
+                        <img class="size-[40px] object-contain" src="/images/logo_noc_branco.png" alt="Logo noc">
+                        <span>Time Branco</span>
+                    </h3>
                     <ul class="space-y-2">
                         @foreach ($timeBranco as $index => $atleta)
-                            <li class="flex items-center gap-2 p-2 bg-base-200 rounded">
-                                <span class="font-bold">{{ $index + 1 }}.</span>
+                            <li class="flex items-center gap-2 p-2 bg-base-900 rounded">
+                                <div class="avatar avatar-placeholder">
+                                    <div class="bg-base-content text-base-300 rounded-full w-10">
+                                        <span
+                                            class="text-lg font-bold">{{ mb_strtoupper(mb_substr($atleta->apelido ?: $atleta->nome, 0, 1)) }}</span>
+                                    </div>
+                                </div>
                                 <span class="flex-1">{{ $atleta->apelido ?: $atleta->nome }}</span>
-                                <span class="text-sm">{{ str_repeat('⭐', $atleta->nivel_habilidade) }}</span>
+                                <span class="text-sm text-gray-500">#{{ $atleta->numero }}</span>
                             </li>
                         @endforeach
                     </ul>

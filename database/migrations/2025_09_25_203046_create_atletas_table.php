@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -18,7 +17,7 @@ return new class extends Migration
             $table->tinyInteger('numero')->nullable();
             $table->enum('posicao', ['linha', 'goleiro'])->default('linha');
             $table->tinyInteger('nivel_habilidade')->default(3)->comment('Nivel de 1 a 5');
-            $table->string('telefone')->unique();
+            $table->string('telefone')->nullable();
             $table->enum('status', ['ativo', 'inativo'])->default('ativo');
             $table->text('observacoes')->nullable();
             $table->timestamps();

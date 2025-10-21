@@ -11,7 +11,7 @@
 @section('header')
     <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
         <div>
-            <h1 class="text-3xl font-bold text-gray-200">{{ $partida->data_hora_formatada }}</h1>
+            <h1 class="text-3xl font-bold text-gray-200">{{ $partida->data_formatada }} horas</h1>
             <div class="flex items-center gap-4 mt-2">
                 <span
                     class="badge 
@@ -339,6 +339,10 @@
                             <a href="{{ route('partidas.mensagem-whatsapp', $partida) }}"
                                 class="btn btn-primary btn-sm w-full justify-start">
                                 💬 Gerar Mensagem
+                            </a>
+
+                            <a href="{{ route('partidas.story-instagram', $partida) }}" class="btn btn-secondary">
+                                📸 Gerar Story
                             </a>
                         @endif
 

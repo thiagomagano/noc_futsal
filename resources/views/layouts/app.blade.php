@@ -14,6 +14,7 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
 </head>
 
 <body class="font-sans antialiased bg-base-100">
@@ -149,8 +150,8 @@
             });
         }, 5000);
     </script>
-
     @stack('scripts')
+
 </body>
 
 </html>

@@ -13,7 +13,7 @@
     <div class="flex items-center justify-between">
         <div>
             <h1 class="text-3xl font-bold text-gray-900">Editar Partida</h1>
-            <p class="text-gray-600 mt-1">{{ $partida->data_hora_formatada }}</p>
+            <p class="text-gray-600 mt-1">{{ $partida->data_formatada }}</p>
         </div>
     </div>
 @endsection
@@ -39,9 +39,9 @@
                                     <span class="label-text">Data <span class="text-error">*</span></span>
                                 </label>
                                 <input type="date" name="data"
-                                    value="{{ old('data', $partida->data_hora->format('Y-m-d')) }}"
-                                    class="input input-bordered @error('data_hora') input-error @enderror" required>
-                                @error('data_hora')
+                                    value="{{ old('data', $partida->data->format('Y-m-d')) }}"
+                                    class="input input-bordered @error('data') input-error @enderror" required>
+                                @error('data')
                                     <label class="label">
                                         <span class="label-text-alt text-error">{{ $message }}</span>
                                     </label>
@@ -54,8 +54,8 @@
                                     <span class="label-text">Horário <span class="text-error">*</span></span>
                                 </label>
                                 <input type="time" name="hora"
-                                    value="{{ old('hora', $partida->data_hora->format('H:i')) }}"
-                                    class="input input-bordered @error('data_hora') input-error @enderror" required>
+                                    value="{{ old('hora', $partida->data->format('H:i')) }}"
+                                    class="input input-bordered @error('data') input-error @enderror" required>
                             </div>
                         </div>
 
@@ -240,7 +240,7 @@
                             <form method="POST" action="{{ route('partidas.update', $partida) }}" class="inline">
                                 @csrf
                                 @method('PATCH')
-                                <input type="hidden" name="data_hora" value="{{ $partida->data_hora }}">
+                                <input type="hidden" name="data" value="{{ $partida->data }}">
                                 <input type="hidden" name="local" value="{{ $partida->local }}">
                                 <input type="hidden" name="status" value="cancelada">
                                 <input type="hidden" name="observacoes" value="{{ $partida->observacoes }}">
@@ -282,10 +282,10 @@
             const horaInput = document.querySelector('input[name="hora"]');
 
             if (dataInput && horaInput && dataInput.value && horaInput.value) {
-                // Criar input hidden com data_hora combinada
+                // Criar input hidden com data combinada
                 const dataHoraInput = document.createElement('input');
                 dataHoraInput.type = 'hidden';
-                dataHoraInput.name = 'data_hora';
+                dataHoraInput.name = 'data';
                 dataHoraInput.value = dataInput.value + ' ' + horaInput.value + ':00';
 
                 this.appendChild(dataHoraInput);

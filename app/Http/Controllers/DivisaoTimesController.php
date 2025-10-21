@@ -9,6 +9,32 @@ use Illuminate\View\View;
 
 class DivisaoTimesController extends Controller
 {
+
+    /**
+     * Gerar imagem para Story do Instagram
+     */
+    public function gerarStory(Partida $partida): View
+    {
+        if (!$partida->temTimesDefinidos()) {
+            return redirect()
+                ->route('partidas.show', $partida)
+                ->with('error', 'Os times ainda não foram definidos.');
+        }
+
+        $timePreto = $partida->timePreto()
+            ->orderBy('nivel_habilidade', 'desc')
+            ->get();
+
+        $timeBranco = $partida->timeBranco()
+            ->orderBy('nivel_habilidade', 'desc')
+            ->get();
+
+        $balanceamento = $partida->getBalanceamentoTimes();
+
+        return view('partidas.story-instagram', compact('partida', 'timePreto', 'timeBranco', 'balanceamento'));
+    }
+
+
     /**
      * Mostrar preview da divisão de times
      */
@@ -129,11 +155,12 @@ class DivisaoTimesController extends Controller
         }
 
         $timePreto = $partida->timePreto()
-            ->orderBy('nivel_habilidade', 'desc')
+            ->orderBy('posicao', 'desc')
+            ->orderBy('numero')
             ->get();
 
         $timeBranco = $partida->timeBranco()
-            ->orderBy('nivel_habilidade', 'desc')
+            ->orderBy('posicao', 'desc')
             ->get();
 
         $balanceamento = $partida->getBalanceamentoTimes();

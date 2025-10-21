@@ -40,7 +40,7 @@ class AtletaController extends Controller
         $sortBy = $request->get('sort', 'nome');
         $sortDirection = $request->get('direction', 'asc');
 
-        $allowedSorts = ['nome', 'posicao', 'nivel_habilidade', 'status', 'created_at'];
+        $allowedSorts = ['nome', 'posicao', 'nivel_habilidade', 'status', 'numero', 'created_at'];
         if (in_array($sortBy, $allowedSorts)) {
             $query->orderBy($sortBy, $sortDirection);
         }
