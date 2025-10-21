@@ -178,71 +178,95 @@
         <!-- Texto Completo (oculto para copiar) -->
         <textarea id="mensagemTexto" class="hidden">{{ $mensagem }}</textarea>
 
-        <!-- Listagem dos Times (Desktop) -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <!-- Time Preto -->
-            <div class="card bg-neutral text-neutral-content shadow-xl">
-                <div class="card-body">
-                    <h3 class="card-title mb-4">
-                        <img class="size-[40px] object-contain" src="/images/logo_noc_preto.png" alt="Logo noc">
-                        <span>Time Preto </span>
-                    </h3>
-                    <ul class="space-y-2">
-                        @foreach ($timePreto as $index => $atleta)
-                            <li class="flex items-center gap-2 p-2 bg-base-900 rounded">
-                                <div class="avatar avatar-placeholder">
-                                    <div class="bg-base-content text-base-300 rounded-full w-10">
-                                        <span
-                                            class="text-lg font-bold">{{ mb_strtoupper(mb_substr($atleta->apelido ?: $atleta->nome, 0, 1)) }}</span>
-                                    </div>
-                                </div>
-                                <span class="flex-1">{{ $atleta->apelido ?: $atleta->nome }}</span>
-                                <span class="text-sm text-gray-500">#{{ $atleta->numero }}</span>
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
+        <div class="my-32">
+
+
+
+
+            <div class="info grid place-items-center mb-12">
+                <h2 class="font-serif text-8xl texxt-white">{{ $partida->hora_formatada }}</h2>
+                <h3 class="font-serif text-xl text-gray-500">{{ $partida->data_formatada }} - {{ $partida->local }},
+                    Porto Alegre, RS</h3>
             </div>
 
-            <!-- Time Branco -->
-            <div class="card bg-white text-base-100 border-2 shadow-xl">
-                <div class="card-body text-base-900">
-                    <h3 class="card-title mb-4">
-                        <img class="size-[40px] object-contain" src="/images/logo_noc_branco.png" alt="Logo noc">
-                        <span>Time Branco</span>
-                    </h3>
-                    <ul class="space-y-2">
-                        @foreach ($timeBranco as $index => $atleta)
-                            <li class="flex items-center gap-2 p-2 bg-base-900 rounded">
-                                <div class="avatar avatar-placeholder">
-                                    <div class="bg-base-content text-base-300 rounded-full w-10">
-                                        <span
-                                            class="text-lg font-bold">{{ mb_strtoupper(mb_substr($atleta->apelido ?: $atleta->nome, 0, 1)) }}</span>
-                                    </div>
-                                </div>
-                                <span class="flex-1">{{ $atleta->apelido ?: $atleta->nome }}</span>
-                                <span class="text-sm text-gray-500">#{{ $atleta->numero }}</span>
-                            </li>
-                        @endforeach
-                    </ul>
+
+
+            <div class="flex justify-center items-center gap-10 mb-12">
+                <h3 class="text-6xl font-serif">
+                    {{-- <img class="size-[80px] object-contain" src="/images/logo_noc_preto.png" alt="Logo noc"> --}}
+                    <span>Time Preto</span>
+                </h3>
+
+                <div class="grid place-items-center mb-10">
+
+                    <img class="size-40 object-contain" src="/images/logo_noc.png" alt="Logo do time futsal N.O.C">
+                    <h3 class="text-xl font-serif">VS</h3>
                 </div>
+
+                <h3 class="text-6xl font-serif">
+                    <span>Time Branco</span>
+                    {{-- <img class="size-[80px] object-contain" src="/images/logo_noc_branco.png" alt="Logo noc"> --}}
+                </h3>
+
+
+
             </div>
-        </div>
 
-        <!-- Ações Finais -->
-        <div class="flex flex-col sm:flex-row gap-4">
-            <button onclick="copiarMensagem()" class="btn btn-primary btn-lg flex-1">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                </svg>
-                Copiar Mensagem
-            </button>
 
-            <a href="{{ route('partidas.show', $partida) }}" class="btn btn-ghost btn-lg flex-1">
-                ← Voltar para Partida
-            </a>
+            <div class="grid grid-cols-2 gap-16">
+
+                <!-- Time Preto -->
+                <ul class="space-y-3">
+                    @foreach ($timePreto as $index => $atleta)
+                        <li class="flex items-center gap-2 p-2 bg-black  rounded">
+                            <div class="avatar avatar-placeholder">
+                                <div class="bg-base-100 bg-linear-to-r from-base- text-base-900 rounded-full w-10">
+                                    <span
+                                        class="text-lg font-bold">{{ mb_strtoupper(mb_substr($atleta->apelido ?: $atleta->nome, 0, 1)) }}</span>
+                                </div>
+                            </div>
+                            <span class="flex-1">{{ $atleta->apelido ?: $atleta->nome }}</span>
+                            <span class=" text-gray-500">#{{ $atleta->numero }}</span>
+                        </li>
+                    @endforeach
+                </ul>
+
+
+                <!-- Time Branco -->
+                <ul class="space-y-3">
+                    @foreach ($timeBranco as $index => $atleta)
+                        <li class="flex items-center gap-2 p-2 bg-white text-base-100 rounded">
+                            <div class="avatar avatar-placeholder">
+                                <div class="bg-base-content text-base-300 rounded-full w-10">
+                                    <span
+                                        class="text-lg font-bold">{{ mb_strtoupper(mb_substr($atleta->apelido ?: $atleta->nome, 0, 1)) }}</span>
+                                </div>
+                            </div>
+                            <span class="flex-1">{{ $atleta->apelido ?: $atleta->nome }}</span>
+                            <span class=" text-gray-500">#{{ $atleta->numero }}</span>
+                        </li>
+                    @endforeach
+                </ul>
+
+            </div>
+
         </div>
+    </div>
+
+    <!-- Ações Finais -->
+    <div class="flex flex-col sm:flex-row gap-4">
+        <button onclick="copiarMensagem()" class="btn btn-primary btn-lg flex-1">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+            </svg>
+            Copiar Mensagem
+        </button>
+
+        <a href="{{ route('partidas.show', $partida) }}" class="btn btn-ghost btn-lg flex-1">
+            ← Voltar para Partida
+        </a>
+    </div>
     </div>
 @endsection
 
